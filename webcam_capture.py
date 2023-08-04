@@ -6,13 +6,8 @@ import numpy as np
 from flask import Flask, render_template, Response
 import datetime
 import smtplib
+from config import SMTP_SERVER, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD, ALERT_RECIPIENTS, MOTION_THRESHOLD, VIDEO_FILENAME
  
-smtp_server = 'smtp.gmail.com'
-smtp_port = 587
-smtp_username = 'smtp@gmail.com'
-#mask my email password
-smtp_password ='smtp'
-
 #set up video recording parameters
 video_filename = 'video.mp4v'
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -22,7 +17,6 @@ app = Flask(__name__, template_folder='templates')
 #Initialize the video capture object
 cap = cv2.VideoCapture(0)
 #Initialize the face recognizer object
-motion_threshold = 500
 motion_detected = False
 motion_start_time = None
 alert_sent = False
